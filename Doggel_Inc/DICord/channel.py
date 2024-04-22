@@ -4,7 +4,7 @@ class Channel:
     self.client = client
     self.session = client.session
 
-  async def send(self, content, reference=None, embed):     
+  async def send(self, content, embed, reference=None):     
     url = f'https://discord.com/api/v6/channels/{self.id}/messages'
     headers = {
       'Authorization': f'Bot {self.client.token}',
