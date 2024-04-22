@@ -1,6 +1,5 @@
 
 class Embed:
-
     def create_embed(self, title, description, color, fields=None, footer=None, image_url=None):
         """
         Create an embed structure for Discord.
