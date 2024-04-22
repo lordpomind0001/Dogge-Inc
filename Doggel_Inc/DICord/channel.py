@@ -4,7 +4,7 @@ class Channel:
     self.client = client
     self.session = client.session
 
-  async def send(self, content, reference=None):     
+  async def send(self, content, reference=None, embed):     
     url = f'https://discord.com/api/v6/channels/{self.id}/messages'
     headers = {
       'Authorization': f'Bot {self.client.token}',
@@ -14,5 +14,7 @@ class Channel:
       'content': content,
       'message_reference': {'message_id': reference} if reference else None
     }
+    if embed is not None:
+      payload['embed'] = embed
     async with self.session.post(url, headers=headers, json=payload) as response:
       return await response.json()
