@@ -23,7 +23,7 @@ class User:
       else:
         raise Exception(f"Failed to create DM channel: {dm_response.json()}")
         
-  async def send(self, content, reference=None, embed):
+  async def send(self, content, embed, reference=None):
     if self.dm == None:
       raise Exception("You haven't created a DM before trying to send something to user")
     url = f'https://discord.com/api/v6/channels/{self.dm}/messages'
