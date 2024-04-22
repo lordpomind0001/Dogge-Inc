@@ -22,8 +22,8 @@ class User:
         self.set_dm(idd)
       else:
         raise Exception(f"Failed to create DM channel: {dm_response.json()}")
-  
-  async def send(self, content, reference=None):
+        
+  async def send(self, content, reference=None, embed):
     if self.dm == None:
       raise Exception("You haven't created a DM before trying to send something to user")
     url = f'https://discord.com/api/v6/channels/{self.dm}/messages'
@@ -32,8 +32,10 @@ class User:
       'Content-Type': 'application/json',
     }
     payload = {
-        'content': content,
-        'message_reference': {'message_id': reference} if reference else None
+      'content': content,
+      'message_reference': {'message_id': reference} if reference else None
     }
+    if embed is not None:
+      payload['embed'] = embed
     async with self.session.post(url, headers=headers, json=payload) as response:
       return await response.json()
