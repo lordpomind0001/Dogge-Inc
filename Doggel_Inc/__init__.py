@@ -1,3 +1,3 @@
-from AI import *
+from .AI import *
 
-from DICord import *
+from .DICord import *
